@@ -1,0 +1,29 @@
+@model HairSalon.ViewModels.EmployeeDetailsViewModel;
+
+<h1>Employee Details</h1>
+<div class="border">
+  <h2>@Html.DisplayNameFor(model => model.Employee.Name): @Html.DisplayFor(model => model.Employee.Name)</h2>
+  <ul>
+    <li>@Html.DisplayNameFor(model => model.Employee.Specialty): @Html.DisplayFor(model => model.Employee.Specialty)</li>
+  </ul>
+
+  <h2>Clients</h2>
+  <ul>
+  @if(Model.Clients.Count == 0)
+  {
+    <p>No Clients found.</p>
+  }
+  else
+  {
+      @foreach (var client in Model.Clients)
+      {
+          <li>Name: @client.Name</li>
+          <li>Specialty Needed: @client.SpecialtyNeeded</li>
+      }
+  }
+  </ul>
+</div>
+
+<p>@Html.ActionLink("Add new Client", "Create", "Clients", new { EmployeeId = Model.Employee.EmployeeId }, new { @class = "action-link-button" })</p>
+
+<p>@Html.ActionLink("Back to Employees List", "Index", new { @class = "action-link-button" })</p>

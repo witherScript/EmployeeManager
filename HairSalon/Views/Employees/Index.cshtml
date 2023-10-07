@@ -1,0 +1,18 @@
+@using HairSalon.Models;
+
+<h1>Employee Manager</h1>
+  @if (@Model.Count == 0)
+  {
+    <h3>No Employees have been added.</h3>
+  }
+  else
+  {
+    <ul>
+      @foreach (Employee employee in Model)
+      {
+        <li>@Html.ActionLink($"{employee.Name}", "Show", new { id = employee.EmployeeId })</li>
+      }
+    </ul>
+  }
+<p>@Html.ActionLink("Add a new Employee", "Create", "Employees", new { @class = "action-link-button" })</p>
+<p>@Html.ActionLink("Home", "Index", "Home", new { @class = "action-link-button" })</p>

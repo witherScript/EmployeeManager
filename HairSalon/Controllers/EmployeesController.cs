@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
 using System.Collections.Generic;
 using System.Linq;
+using HairSalon.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace HairSalon.Controllers
@@ -20,6 +21,7 @@ namespace HairSalon.Controllers
       List<Employee> model = _db.Employees.ToList();
       return View(model);
     }
+
     public ActionResult Create()
     {
       return View();
@@ -35,8 +37,17 @@ namespace HairSalon.Controllers
 
     public ActionResult Show(int id)
     {
-      Employee thisItem = _db.Employees.FirstOrDefault(employee => employee.EmployeeId == id);
-      return View(thisItem);
+      var employee = _db.Employees.FirstOrDefault(e => e.EmployeeId == id);
+      var clients = _db.Clients.Where(c => c.EmployeeId == id).ToList();
+
+      var viewModel = new EmployeeDetailsViewModel
+      {
+          Employee = employee,
+          Clients = clients
+      };
+
+      return View(viewModel);
+
     }
   }
 }
