@@ -1,10 +1,10 @@
 # Eau Claire's Employee & Client Management Software
 ### By Genesis Scott
 
-A web application that allows managers to manage their employees' details and information.
+A web application that allows managers to manage their employees' details and add clients.
 
 ### Technologies Used
-- .NET 5.0
+- .NET 6.0
 - ASP.NET Core MVC
 - Entity Framework Core
 - Bootstrap
